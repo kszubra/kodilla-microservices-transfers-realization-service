@@ -12,13 +12,16 @@ import java.io.IOException;
 @Service
 public class TransferListener {
 
-    @KafkaListener(topics = "transfers")
+    @KafkaListener(topics = "bank-transfers")
     public void consume(@Payload TransferMessage transferMessage) throws IOException {
         log.info("Consumed transferMessage: from {} to: {} for: {} PLN",
                 transferMessage.getTransfer().getSenderAccount(),
                 transferMessage.getTransfer().getRecipientAccount(),
                 transferMessage.getTransfer().getAmount()
         );
+
+        //TODO Create transaction server and send request to transaction server
+        log.info("Simulating transaction creation");
     }
 
 }
